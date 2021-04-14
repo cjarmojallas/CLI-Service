@@ -14,11 +14,28 @@ conn.execute(f'''CREATE TABLE IF NOT EXISTS RESERVATION (
                 CHILD             INT    NOT NULL,
                 TOTAL             INT    NOT NULL);''')
 
+while 1:
+    cho = input("\n\n       Are you using Windows command line (Command Prompt)? y/n: ")
+    if cho == 'y' or cho == 'Y':
+        f = 'cls'
+        os.system(f'{f}')
+        break
+    elif cho == 'n' or cho == 'N':
+        choi = input('\n\n       Are you using Other command line? y/n:')
+        if choi == 'y' or choi == 'Y':
+            f = 'clear'
+            break
+        else:
+            f = ''
+            os.system(f'{f}')
+            break
+
+
 def var():
     print("[a]View All\n[b]View by ID\n[c]Back\n")
     choice = input("PLEASE CHOOSE: ")
     if choice == 'a':
-        os.system('cls')
+        os.system(f'{f}')
         cursor = conn.execute(f"SELECT id, name, date, time, adults, child from RESERVATION")
         for row in cursor:
             print('\n')
@@ -33,10 +50,10 @@ def var():
         os.system('cls')
 
     elif choice == 'b':
-        os.system('cls')
+        os.system(f'{f}')
         while 1:
             id = input("Input your ID: ")
-            os.system('cls')
+            os.system(f'{f}')
             if conn.execute(f"SELECT id FROM RESERVATION where id={id}").fetchone():
                 cursor = conn.execute(f"SELECT name, date, time, adults, child from RESERVATION WHERE id = {id}")
                 for row in cursor:
@@ -52,14 +69,14 @@ def var():
             else:
                 choice = input("No ID like that. type 'c' to repeat and 'n' to break: ")
                 if choice == 'c':
-                    os.system('cls')
+                    os.system(f'{f}')
                     continue
                 else:
-                    os.system('cls')
+                    os.system(f'{f}')
                     break
-        os.system('cls')
+        os.system(f'{f}')
     elif choice == 'c':
-        os.system('cls')
+        os.system(f'{f}')
         pass
     else:
         print("Wrong Input")
@@ -96,50 +113,50 @@ def mr():
         else:
             break
 
-    os.system('cls')
+    os.system(f'{f}')
 
 def dr():
     print("[a]Delete All\n[b]Delete by ID\n[c]Back\n")
     choice = input("YOUR CHOICE: ")
     if choice == 'a':
-        os.system('cls')
+        os.system(f'{f}')
         conn.execute("DELETE FROM RESERVATION")
         conn.commit()
         input("\nDONE\n\nHIT ENTER TO CONTINUE")
-        os.system('cls')
+        os.system(f'{f}')
 
     elif choice == 'b':
-        os.system('cls')
+        os.system(f'{f}')
         while 1:
             id = input("Enter ID: ")
-            os.system('cls')
+            os.system(f'{f}')
             if conn.execute(f"SELECT id FROM RESERVATION where id={id}").fetchone():
 
                 conn.execute(f"DELETE FROM RESERVATION WHERE id={id}")
 
                 conn.commit()
 
-                os.system('cls')
+                os.system(f'{f}')
             else:
                 choice = input("No ID like that. type 'c' to repeat and 'n' to break: ")
                 if choice == 'c':
-                    os.system('cls')
+                    os.system(f'{f}')
                     continue
                 else:
-                    os.system('cls')
+                    os.system(f'{f}')
                     break
 
             cho = input("Wish to delete again? y/n: ")
 
             if cho == 'y' or cho == 'Y':
-                os.system('cls')
+                os.system(f'{f}')
                 continue
             else:
                 break
-        os.system('cls')
+        os.system(f'{f}')
 
     elif choice == 'c':
-        os.system('cls')
+        os.system(f'{f}')
         pass
     else:
         print("Wrong Input")
@@ -148,7 +165,7 @@ def gr():
     print("[a]Generate All Reports(CLI)\n[b]Generate Specific Reports\n[c]Back\n")
     choice = input("PLEASE CHOOSE: ")
     if choice == 'a':
-        os.system('cls')
+        os.system(f'{f}')
         cursor = conn.execute(f"SELECT id, name, date, time, adults, child, total from RESERVATION")
         cursor2 = conn.execute("SELECT sum(TOTAL) from RESERVATION")
 
@@ -167,11 +184,11 @@ def gr():
 
         print("\n")
         input("\nPRESS ENTER TO CONTINUE")
-        os.system('cls')
+        os.system(f'{f}')
 
     elif choice == 'b':
         while 1:
-            os.system('cls')
+            os.system(f'{f}')
             id = input("Enter ID: ")
             if conn.execute(f"SELECT id FROM RESERVATION where id={id}").fetchone():
                 cursor = conn.execute(f"SELECT name, date, time, adults, child, total from RESERVATION where id={id}")
@@ -192,28 +209,19 @@ def gr():
             else:
                 choice = input("No ID like that. type 'c' to repeat and 'n' to break: ")
                 if choice == 'c':
-                    os.system('cls')
+                    os.system(f'{f}')
                     continue
                 else:
-                    os.system('cls')
+                    os.system(f'{f}')
                     break
-        os.system('cls')
+        os.system(f'{f}')
 
     elif choice == 'c':
-        os.system('cls')
+        os.system(f'{f}')
         pass
     else:
         print("WRONG INPUT")
-        os.system('cls')
-
-while 1:
-    print("\n\n         PLEASE RUN IT ON COMMAND PROMPT FOR BETTER USE.")
-    input("\n\n         PRESS ENTER \n\n")
-    os.system('cls')
-    print("\n\n         note** IT MAY NOT LOOK WELL IF YOU ARE USING OTHER TERMINAL OR CONSOLE.")
-    input("\n\n         PRESS ENTER \n\n\n")
-    os.system('cls')
-    break
+        os.system(f'{f}')
 
 while 1:
     print("\n")
@@ -222,22 +230,22 @@ while 1:
     choice = input("\nYOUR CHOICE?: ")
 
     if choice == 'a':
-        os.system('cls')
+        os.system(f'{f}')
         var()
     elif choice == 'b':
-        os.system('cls')
+        os.system(f'{f}')
         mr()
     elif choice == 'c':
-        os.system('cls')
+        os.system(f'{f}')
         dr()
     elif choice == 'd':
-        os.system('cls')
+        os.system(f'{f}')
         gr()
     elif choice == 'e':
-        os.system('cls')
+        os.system(f'{f}')
         print("\n \nCome Again. Thank You.")
         break
     else:
         print("Please choose, a to e")
         time.sleep(1)
-        os.system('cls')
+        os.system(f'{f}')
